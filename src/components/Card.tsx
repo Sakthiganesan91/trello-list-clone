@@ -19,13 +19,13 @@ const Card: React.FC<CardProp> = ({ card, setCards, cards }) => {
       className="focus-ring px-2 border rounded-2 "
     >
       <div className="d-flex align-items-center gap-4 my-2">
-        <p className="card-title h6 fw-bold ">{card.title}</p>
-        <p className="fw-bold my-2">{card.countOfList}</p>
+        <p className="card-title h6 fw-bold ">{card?.title}</p>
+        <p className="fw-bold my-2">{card?.countOfList}</p>
         <ListAddButton
           cards={cards}
           listItemName={listItemName}
           setListItemName={setListItemName}
-          card={card}
+          card={card!}
           setCards={setCards}
         />
       </div>
@@ -38,8 +38,8 @@ const Card: React.FC<CardProp> = ({ card, setCards, cards }) => {
           setListItemName(e.target.value);
         }}
       />
-      {card.items.length === 0 && <div className="my-5"></div>}
-      <List lists={card.items} />
+      {card?.items.length === 0 && <div className="my-5"></div>}
+      <List lists={card?.items!} />
     </div>
   );
 };

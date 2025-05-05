@@ -1,5 +1,5 @@
 import { ItemProps } from "../types";
-
+import { FixedSizeList as ListCol } from "react-window";
 import ListItem from "./ListItem";
 
 interface ListProp {
@@ -14,17 +14,24 @@ const List = ({ lists }: ListProp) => {
   };
   return (
     <>
-      <div className="">
-        {lists.length > 0 &&
-          lists.map((item) => (
-            <div
-              draggable
-              onDragStart={(event) => onDragStartHandler(event, item)}
-            >
-              <ListItem item={item} key={item.id} />
-            </div>
-          ))}
-      </div>
+      <ListCol
+        height={250}
+        itemCount={lists.length}
+        itemData={lists}
+        itemSize={50}
+        width={200}
+      >
+        {({ index, style }) => (
+          <div
+            style={style}
+            draggable
+            onDragStart={(event) => onDragStartHandler(event, lists[index])}
+            key={lists[index].id}
+          >
+            <ListItem item={lists[index]} key={lists[index].id} />
+          </div>
+        )}
+      </ListCol>
     </>
   );
 };

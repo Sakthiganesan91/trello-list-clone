@@ -1,10 +1,11 @@
 import { CardProps, ItemProps } from "../types";
 import Card from "./Card";
-
+import { FixedSizeList as List } from "react-window";
 interface CardListProp {
   cards: CardProps[];
   setCards: React.Dispatch<React.SetStateAction<CardProps[]>>;
 }
+
 const CardList = ({ cards, setCards }: CardListProp) => {
   const dragOverHandler = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -23,6 +24,7 @@ const CardList = ({ cards, setCards }: CardListProp) => {
     const updatedCartAfterDrop = cards.map((card) => {
       if (card.id === previousCardId && card.id !== cardId) {
         card.items = card.items.filter((i) => item.id !== i.id);
+        card.countOfList -= 1;
         return card;
       }
 
@@ -31,6 +33,7 @@ const CardList = ({ cards, setCards }: CardListProp) => {
       }
       if (card.id === cardId) {
         card.items = [...card.items, item];
+        card.countOfList = card.items.length;
         return card;
       }
       return card;
@@ -39,20 +42,25 @@ const CardList = ({ cards, setCards }: CardListProp) => {
     setCards(updatedCartAfterDrop);
   };
   return (
-    <>
-      <div className="d-flex gap-2 align-items-start ">
-        {cards.length > 0 &&
-          cards.map((card) => (
-            <div
-              onDragOver={dragOverHandler}
-              key={card.id}
-              onDrop={(event) => onDropHandler(event, card.id)}
-            >
-              <Card card={card} setCards={setCards} cards={cards} />
-            </div>
-          ))}
-      </div>
-    </>
+    <List
+      height={500}
+      itemCount={cards.length}
+      itemData={cards}
+      itemSize={210}
+      width={1000}
+      layout="horizontal"
+    >
+      {({ index, style }) => (
+        <div
+          style={style}
+          onDragOver={dragOverHandler}
+          key={cards[index].id}
+          onDrop={(event) => onDropHandler(event, cards[index].id)}
+        >
+          <Card card={cards[index]} setCards={setCards} cards={cards} />
+        </div>
+      )}
+    </List>
   );
 };
 

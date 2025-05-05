@@ -9,10 +9,8 @@ function App() {
   const [cardName, setCardName] = useState<string>("");
   return (
     <>
-      <div className="container-fluid">
-        <div className="d-flex gap-2 align-items-start overflow-scroll">
-          <CardList cards={cards} setCards={setCards} />
-
+      <div className="container-fluid my-2">
+        <div className="d-flex gap-2 align-items-start">
           <input
             type="text"
             name=""
@@ -29,6 +27,7 @@ function App() {
             setCardName={setCardName}
             cards={cards}
           />
+          <CardList cards={cards} setCards={setCards} />
         </div>
       </div>
     </>
