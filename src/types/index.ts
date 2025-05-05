@@ -1,11 +1,11 @@
 export interface ItemProps {
-  id: number;
+  id: string;
   title: string;
-  cardId: number;
+  cardId: string;
 }
 
 export type CardProps = {
-  id: number;
+  id: string;
   title: string;
   countOfList: number;
   items: ItemProps[];

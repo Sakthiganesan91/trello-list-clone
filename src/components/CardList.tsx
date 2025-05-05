@@ -12,7 +12,7 @@ const CardList = ({ cards, setCards }: CardListProp) => {
 
   const onDropHandler = (
     event: React.DragEvent<HTMLElement>,
-    cardId: number
+    cardId: string
   ): void => {
     let item: ItemProps = JSON.parse(event.dataTransfer.getData("item"));
 

@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import { CardProps } from "../types";
+import { v4 as uuidv4 } from "uuid";
 
 const ListAddButton = (props: {
   listItemName: string;
@@ -26,7 +27,7 @@ const ListAddButton = (props: {
         card.items = [
           ...card.items,
           {
-            id: card.items.length + 1,
+            id: uuidv4(),
             title: listItemName,
             cardId: card.id,
           },

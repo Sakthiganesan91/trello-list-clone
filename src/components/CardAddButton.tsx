@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
 import { CardProps } from "../types";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 const CardAddButton = (props: {
   setCards: React.Dispatch<React.SetStateAction<CardProps[]>>;
   cardName: string;
@@ -26,7 +27,7 @@ const CardAddButton = (props: {
     setError(false);
     setErrorMessage("");
     const cardObj: CardProps = {
-      id: cards.length + 1,
+      id: uuidv4(),
       title: cardName,
       items: [],
       countOfList: 0,
