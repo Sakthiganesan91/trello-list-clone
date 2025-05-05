@@ -23,6 +23,7 @@ const CardList = ({ cards, setCards }: CardListProp) => {
     const updatedCartAfterDrop = cards.map((card) => {
       if (card.id === previousCardId && card.id !== cardId) {
         card.items = card.items.filter((i) => item.id !== i.id);
+        card.countOfList -= 1;
         return card;
       }
 
@@ -31,6 +32,7 @@ const CardList = ({ cards, setCards }: CardListProp) => {
       }
       if (card.id === cardId) {
         card.items = [...card.items, item];
+        card.countOfList = card.items.length;
         return card;
       }
       return card;
