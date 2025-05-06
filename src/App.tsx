@@ -13,8 +13,8 @@ function App() {
         <div className="d-flex gap-2 align-items-start">
           <input
             type="text"
-            name=""
-            id=""
+            name="cardName"
+            id="cardName"
             placeholder="Card Name"
             value={cardName}
             onChange={(event) => {

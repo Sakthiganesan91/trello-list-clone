@@ -1,5 +1,7 @@
 import { ItemProps } from "../types";
 import { FixedSizeList as ListCol } from "react-window";
+//import AutoSizer from "react-virtualized-auto-sizer";
+
 import ListItem from "./ListItem";
 
 interface ListProp {

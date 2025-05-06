@@ -22,12 +22,15 @@ const CardList = ({ cards, setCards }: CardListProp) => {
     item.cardId = cardId;
 
     const updatedCartAfterDrop = cards.map((card) => {
+      //did this logic to ensure we filter out item if the cardId is not same as original card id
+      //
       if (card.id === previousCardId && card.id !== cardId) {
         card.items = card.items.filter((i) => item.id !== i.id);
         card.countOfList -= 1;
         return card;
       }
 
+      //did this check because same list item was added again even though the card is same
       if (card.id === previousCardId && previousCardId === cardId) {
         return card;
       }

@@ -18,9 +18,11 @@ const Card: React.FC<CardProp> = ({ card, setCards, cards }) => {
       }}
       className="focus-ring px-2 border rounded-2 "
     >
-      <div className="d-flex align-items-center gap-4 my-2">
+      <div className="d-flex align-items-center gap-4 my-1">
         <p className="card-title h6 fw-bold ">{card?.title}</p>
-        <p className="fw-bold my-2">{card?.countOfList}</p>
+        <p className="fw-bold my-2 border border-dark border-2 rounded-circle p-1">
+          {card?.countOfList}
+        </p>
         <ListAddButton
           cards={cards}
           listItemName={listItemName}
@@ -31,8 +33,8 @@ const Card: React.FC<CardProp> = ({ card, setCards, cards }) => {
       </div>
       <input
         type="text"
-        name=""
-        id=""
+        name="listItemName"
+        id="listItemName"
         value={listItemName}
         onChange={(e) => {
           setListItemName(e.target.value);
